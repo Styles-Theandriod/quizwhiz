@@ -1,9 +1,12 @@
-import React from 'react'
+import {useApp} from '../context';
 
 const Questions = () => {
+
+	const {questions} = useApp();
+
 	return (
-		<div>
-			<p className="text-lg">Questions</p>
+		<div className="container mx-auto px-4">
+			<p className="text-lg text-right">Question {}/{questions.length}</p>
 		</div>
 	)
 }

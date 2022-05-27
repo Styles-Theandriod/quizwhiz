@@ -1,15 +1,33 @@
 import React from 'react'
 
 import {useApp} from '../context';
-import {fetchQuestions} from '../quiz';
 
 const ParamsForm = () => {
 
-	const {params, setParams} = useApp();
+	const {params, setParams, setShowForm, setLoading, setQuestions} = useApp();
+
+	const url = 'https://opentdb.com/api.php?';
+
+
+	const fetchQuestions = async () => {
+		try {
+			const res = await fetch(`${url}amount=${params.length}&category=${params.category}&difficulty=${params.difficulty}&type=${params.type}`);
+			const {results} = await res.json();
+			console.log(results);
+			setLoading(false);
+		} catch (err) {
+			console.log('Error', err);
+			setLoading(false);
+		}
+			
+	}
 
 	const handleClick = () => {
-		console.log(params);
-		fetchQuestions(params);
+		setLoading(true);
+		setShowForm(false);
+
+		fetchQuestions();
+		
 	}
 
 	const setOption = (param, value) => {

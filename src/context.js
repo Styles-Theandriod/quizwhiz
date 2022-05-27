@@ -10,7 +10,8 @@ const AppContext = createContext();
 export const ContextProvider = ({children}) => {
 
 	const [darkMode, setDarkMode] = useState(false);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
+	const [showForm, setShowForm] = useState(true);
 	const [questions, setQuestions] = useState([]);
 	const [params, setParams] = useState({
 		length: 10,
@@ -19,7 +20,7 @@ export const ContextProvider = ({children}) => {
 		type: '',
 	})
 
-	const values = {darkMode, setDarkMode, questions, setQuestions, params, setParams, loading, setLoading}
+	const values = {darkMode, setDarkMode, questions, setQuestions, params, setParams, loading, setLoading, showForm, setShowForm}
 
 	return (
 			<AppContext.Provider value={values}>
