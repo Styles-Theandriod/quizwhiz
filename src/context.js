@@ -9,6 +9,7 @@ const AppContext = createContext();
 
 export const ContextProvider = ({children}) => {
 
+	const [darkMode, setDarkMode] = useState(false);
 	const [questions, setQuestions] = useState([]);
 	const [params, setParams] = useState({
 		length: 10,
@@ -17,7 +18,7 @@ export const ContextProvider = ({children}) => {
 		difficulty: '',
 	})
 
-	const values = {questions, setQuestions, params, setParams}
+	const values = {darkMode, setDarkMode, questions, setQuestions, params, setParams}
 
 	return (
 			<AppContext.Provider value={values}>
