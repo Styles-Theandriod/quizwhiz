@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {useApp} from '../context';
 
 const ParamsForm = () => {
@@ -9,17 +7,20 @@ const ParamsForm = () => {
 	const url = 'https://opentdb.com/api.php?';
 
 	const fetchQuestions = async () => {
+		let urlToFetch = `${url}amount=${params.length}&category=${params.category}&difficulty=${params.difficulty}&type=${params.type}`;
+		console.log(urlToFetch);
 		try {
-			const res = await fetch(`${url}amount=${params.length}&category=${params.category}&difficulty=${params.difficulty}&type=${params.type}`);
+			const res = await fetch(urlToFetch);
 			const {results} = await res.json();
 			setQuestions(results);
 			setLoading(false);
 			setShowForm(false);
 		} catch (err) {
 			console.log('Error', err);
+			setQuestions([]);
 			setLoading(false);
-		}
-			
+			setShowForm(true);
+		}			
 	}
 
 	const handleClick = () => {
@@ -74,6 +75,7 @@ const ParamsForm = () => {
 							<option value="27">Animals</option>
 							<option value="17">Science & Nature</option>
 							<option value="19">Mathematics</option>
+							<option value="20">Mythology</option>
 							<option value="31">Anime & Manga</option>
 						</select>
 					</div>
