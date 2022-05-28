@@ -15,9 +15,9 @@ export const ContextProvider = ({children}) => {
 	const [questions, setQuestions] = useState([]);
 	const [params, setParams] = useState({
 		length: 10,
-		category: '',
-		difficulty: '',
-		type: '',
+		category: '0',
+		difficulty: '0',
+		type: '0',
 	})
 
 	const values = {darkMode, setDarkMode, questions, setQuestions, params, setParams, loading, setLoading, showForm, setShowForm}

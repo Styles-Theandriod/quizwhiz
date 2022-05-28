@@ -8,13 +8,13 @@ const ParamsForm = () => {
 
 	const url = 'https://opentdb.com/api.php?';
 
-
 	const fetchQuestions = async () => {
 		try {
 			const res = await fetch(`${url}amount=${params.length}&category=${params.category}&difficulty=${params.difficulty}&type=${params.type}`);
 			const {results} = await res.json();
-			console.log(results);
+			setQuestions(results);
 			setLoading(false);
+			setShowForm(false);
 		} catch (err) {
 			console.log('Error', err);
 			setLoading(false);
@@ -24,14 +24,11 @@ const ParamsForm = () => {
 
 	const handleClick = () => {
 		setLoading(true);
-		setShowForm(false);
 
-		fetchQuestions();
-		
+		fetchQuestions();		
 	}
 
 	const setOption = (param, value) => {
-		console.log(param, value);
 
 		if (value !== '0') {
 			switch(param) {
