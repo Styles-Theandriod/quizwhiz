@@ -8,8 +8,6 @@ const Questions = () => {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [options, setOptions] = useState([]);
 
-	let tempScore;
-
 	const shuffle = (array) => {
  		return array.sort(() => Math.random() - 0.5);
 	}
@@ -28,14 +26,12 @@ const Questions = () => {
 			if (clicked === questions[currentQuestion].correct_answer) {
 				e.target.classList.add('bg-green-400');
 				setScore(score + 1);
-				tempScore = score + 1;
 				setTimeout(()=> {
 					e.target.classList.remove('bg-green-400');
 					nextQuestion();
 				}, 500);				
 			} else {
 				e.target.classList.add('bg-red-400');
-				tempScore = score;
 				setTimeout(()=> {
 					e.target.classList.remove('bg-red-400');
 					nextQuestion();
@@ -49,7 +45,7 @@ const Questions = () => {
 			const optionsArr = [...questions[currentQuestion].incorrect_answers, questions[currentQuestion].correct_answer];
 			setOptions(shuffle(optionsArr));
 		}
-	}, [currentQuestion]);
+	}, [questions, currentQuestion]);
 
 
 

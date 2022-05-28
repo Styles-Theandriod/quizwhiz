@@ -9,8 +9,7 @@ import Results from './Components/Results';
 
 const App = ()=> {
 
-  const [results, setResults] = useState([]);
-  const {params, darkMode, setDarkMode, loading, showForm, showResults} = useApp();
+  const {darkMode, loading, showForm, showResults} = useApp();
 
 
   return (
