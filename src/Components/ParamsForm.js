@@ -8,7 +8,6 @@ const ParamsForm = () => {
 
 	const fetchQuestions = async () => {
 		let urlToFetch = `${url}amount=${params.length}&category=${params.category}&difficulty=${params.difficulty}&type=${params.type}`;
-		console.log(urlToFetch);
 		try {
 			const res = await fetch(urlToFetch);
 			const {results} = await res.json();
