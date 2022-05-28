@@ -4,7 +4,7 @@ import {useApp} from '../context';
 
 const Questions = () => {
 
-	const {questions, score, setScore} = useApp();
+	const {questions, score, setScore, setShowResults} = useApp();
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [options, setOptions] = useState([]);
 
@@ -20,8 +20,7 @@ const Questions = () => {
 	}
 
 	const nextQuestion = () => {
-		console.log(tempScore);
-		currentQuestion + 1 >= questions.length ? console.log('Game Over!!!! You scored', tempScore) : setCurrentQuestion(currentQuestion + 1);
+		currentQuestion + 1 >= questions.length ? setShowResults(true) : setCurrentQuestion(currentQuestion + 1);
 	}
 
 	const handleClick = (clicked, e) => {		
@@ -49,7 +48,6 @@ const Questions = () => {
 		if (questions.length > 0) {
 			const optionsArr = [...questions[currentQuestion].incorrect_answers, questions[currentQuestion].correct_answer];
 			setOptions(shuffle(optionsArr));
-			console.log(optionsArr);
 		}
 	}, [currentQuestion]);
 
